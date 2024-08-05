@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useRef, useEffect, KeyboardEventHandler } from 'react';
-import { FaHome, FaInfoCircle, FaGraduationCap, FaBriefcase, FaCertificate, FaProjectDiagram, FaEnvelope, FaVideo, FaCamera, FaFilm, FaPaintBrush, FaTrophy, FaStar } from 'react-icons/fa';
+import { FaVideo, FaCamera, FaFilm, FaPaintBrush, FaTrophy, FaStar } from 'react-icons/fa';
 import '@/public/styles/globals.css';
 import Image from 'next/image';
 
@@ -144,7 +144,7 @@ const Navbar = () => {
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 title="Menu"
-                                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+                                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
                             >
                                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     {isOpen ? (
@@ -157,15 +157,14 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-
                 {isOpen && (
                     <div className="md:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                        <div className="flex flex-wrap px-2 pt-2 pb-3 sm:px-3 space-y-1">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className="text-white hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+                                    className="text-white hover:text-blue-500 flex items-center px-3 py-2 rounded-md text-base font-medium"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     <item.icon aria-hidden="true" />
@@ -182,7 +181,7 @@ const Navbar = () => {
                     tabIndex={-1}
                     role="dialog"
                     aria-labelledby="popout-title"
-                    className="fixed top-[10vh] left-0 right-0 bg-black border-t border-gray-200 shadow-lg p-4 z-40"
+                    className="fixed top-[10vh] left-0 right-0 bg-black shadow-lg p-4 z-40"
                     onKeyDown={(e) => {
                         if (e.key === 'Escape') {
                             setActivePopout(null);
@@ -204,17 +203,11 @@ const Navbar = () => {
                             <div className="flex flex-wrap gap-2">
                                 {navItems.map((item, index) => (
                                     <a key={index} href={item.href} className="text-blue-500 hover:underline">
-                                        #{item.name.toLowerCase().replace(' ', '-')}
+                                        {item.name.toLowerCase().replace(' ', '-')}
                                     </a>
                                 ))}
                             </div>
                         </div>
-                        <button
-                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-                            onClick={() => setActivePopout(null)}
-                        >
-                            Close
-                        </button>
                     </div>
                 </div>
             )}
