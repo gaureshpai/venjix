@@ -1,7 +1,10 @@
+import VideoContainer from "@/components/VideoContainer";
+import Navbar from "@/components/Navbar";
+
 export default function Home() {
   return (
-    <main className="flex min-h-[80vh] items-center justify-center">
-      
+    <main className="relative min-h-screen">
+      <VideoContainer />
     </main>
   );
 }
