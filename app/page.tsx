@@ -1,10 +1,11 @@
 import VideoContainer from "@/components/VideoContainer";
-import Navbar from "@/components/Navbar";
+import IntroductionComponent from "@/components/IntroductionComponent";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen">
       <VideoContainer />
+      <IntroductionComponent/>
     </main>
   );
 }
