@@ -24,6 +24,7 @@ const ContactForm = () => {
       <h1 className="text-6xl mb-12 font-bold p-8">Let’s work together</h1>
 
       <div className='grid md:grid-cols-2 gap-12 items-start'>
+        {/* Contact Info Section */}
         <div className="p-8 rounded-lg">
           <p className="text-lg mb-8">
             We're excited to hear from you and discuss how we can collaborate on your next project.
@@ -53,6 +54,7 @@ const ContactForm = () => {
           </div>
         </div>
 
+        {/* Contact Form Section */}
         <div className="p-8 rounded-lg">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -65,7 +67,7 @@ const ContactForm = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none"
               />
               <hr className="border-white mt-4" />
             </div>
@@ -79,7 +81,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none"
               />
               <hr className="border-white mt-4" />
             </div>
@@ -93,13 +95,13 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent resize-y"
+                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none resize-y focus:outline-none"
               ></textarea>
               <hr className="border-white mt-4" />
             </div>
             <button
               type="submit"
-              className="bg-green-200 text-black py-2 px-4 hover:bg-transparent hover:text-green-200 hover:border-green-200 border-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg font-extrabold"
+              className="bg-[#97C584] text-black py-2 px-4 hover:bg-transparent hover:text-[#97C584] hover:border-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out font-extrabold"
             >
               Submit
             </button>

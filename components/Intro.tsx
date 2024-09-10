@@ -22,7 +22,7 @@ const Intro = () => {
                         </p>
                         <a
                             href="/resume"
-                            className="inline-block bg-green-200 text-black py-2 px-6 hover:bg-transparent hover:text-green-200 border-2 border-green-200 transition duration-300 ease-in-out font-extrabold"
+                            className="inline-block bg-[#97C584] text-black py-2 px-6 hover:bg-transparent hover:text-[#97C584] border-2 border-[#97C584] transition duration-300 ease-in-out font-extrabold"
                             download
                         >
                             Download Resume

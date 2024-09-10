@@ -39,7 +39,7 @@ const Navbar = () => {
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 title="Menu"
-                                className="inline-flex items-center bg-white justify-center p-2 rounded-md text-black hover:text-white hover:bg-white focus:outline-none focus:bg-white focus:text-black transition duration-300"
+                                className="inline-flex items-center bg-white justify-center p-2 rounded-md text-black hover:text-white hover:bg-white transition duration-300"
                             >
                                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     {isOpen ? (

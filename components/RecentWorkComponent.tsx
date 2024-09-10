@@ -38,7 +38,7 @@ const RecentWorkComponent = () => {
                 <div className="mt-8 text-center">
                     <Link
                         href="/Work"
-                        className="bg-green-200 font-extrabold text-black py-2 px-6 text-lg hover:bg-transparent hover:text-green-200 hover:border-green-200 border-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg"
+                        className="bg-[#97C584] font-extrabold text-black py-2 px-6 text-lg hover:bg-transparent hover:text-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out shadow-md hover:shadow-lg"
                     >
                         View All
                     </Link>

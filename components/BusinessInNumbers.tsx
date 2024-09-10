@@ -12,19 +12,19 @@ const BusinessInNumbers = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-green-200">170+</h3>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">170+</h3>
                         <p className="text-gray-300">Enim ad minim veniam, quis nostrud exercitation ullamco</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-green-200">15+</h3>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">15+</h3>
                         <p className="text-gray-300">Duis aute irure dolor in reprehenderit in voluptate velit</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-green-200">1,000+</h3>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">1,000+</h3>
                         <p className="text-gray-300">Excepteur sint occaecat cupidatat non proident, sunt</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-green-200">95%</h3>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">95%</h3>
                         <p className="text-gray-300">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
                     </div>
                 </div>

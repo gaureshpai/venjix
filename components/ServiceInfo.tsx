@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const ServicesComponent = () => {
+const ServiceInfo = () => {
     const services = [
         {
             title: 'Editing',
@@ -24,12 +24,12 @@ const ServicesComponent = () => {
         <div className="bg-black text-white py-16 px-8 md:px-16 lg:px-24">
             <div className="mx-auto p-8 text-center">
                 <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                    I can help you with
+                    Services
                 </h2>
             </div>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {services.map((service) => (
-                    <div key={service.title} className="flex flex-col p-6 rounded-lg shadow-lg">
+                    <div key={service.title} className="flex flex-col p-8 my-10 shadow-lg border-white border-2 top-8">
                         <div className="relative w-full h-48 mb-6">
                             <Image
                                 src={service.image}
@@ -47,4 +47,4 @@ const ServicesComponent = () => {
     );
 };
 
-export default ServicesComponent;
+export default ServiceInfo;
