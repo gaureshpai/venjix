@@ -9,13 +9,14 @@ const Experience = () => {
                     <h1 className="text-5xl md:text-6xl font-bold mb-2 p-8">15 Years of experience in the field</h1>
                 </div>
                 <div className="flex flex-col space-y-6">
-                    <div className="relative h-[250px] md:h-[400px]">
+                    <div className="relative w-full">
                         <Image
-                            src="/images/bg.jpg"
+                            src="/images/Mask-group.jpg"
                             alt="Experience"
-                            fill
+                            width={600}
+                            height={200}
                             style={{ objectFit: 'cover' }}
-                            className="rounded-lg shadow-2xl"
+                            className="shadow-2xl" 
                         />
                     </div>
                     <p className="text-gray-300 text-sm md:text-base leading-relaxed">
