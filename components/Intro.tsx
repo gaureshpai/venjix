@@ -11,7 +11,7 @@ const Intro = () => {
                         alt="Editor & Filmmaker"
                         fill
                         style={{ objectFit: 'cover' }}
-                        className="rounded-lg shadow-2xl"
+                        className="shadow-2xl"
                     />
                 </div>
                 <div className="flex flex-col justify-evenly h-full p-8">
