@@ -1,9 +1,7 @@
-import LogoContainer from "@/components/LogoContainer";
-
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <LogoContainer />
+    <main className="flex min-h-[80vh] items-center justify-center">
+      
     </main>
   );
 }
