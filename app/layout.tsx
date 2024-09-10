@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "@/public/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Venjix",
@@ -18,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}><Navbar/>{children}<Footer/></body>
+      <body className='font-Lora'>
+        <Navbar/>
+          {children}
+          <ContactForm/>
+        <Footer/>
+      </body>
     </html>
   );
 }
