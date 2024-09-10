@@ -21,7 +21,7 @@ const ContactForm = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora">
-      <h1 className="text-6xl mb-12 font-bold">Let’s work together</h1>
+      <h1 className="text-6xl mb-12 font-bold p-8">Let’s work together</h1>
 
       <div className='grid md:grid-cols-2 gap-12 items-start'>
         <div className="p-8 rounded-lg">
@@ -65,7 +65,7 @@ const ContactForm = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none"
+                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
               <hr className="border-white mt-4" />
             </div>
@@ -79,7 +79,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none"
+                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
               <hr className="border-white mt-4" />
             </div>
@@ -93,13 +93,13 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none resize-y"
+                className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-none focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent resize-y"
               ></textarea>
               <hr className="border-white mt-4" />
             </div>
             <button
               type="submit"
-              className="bg-white text-black py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-300 ease-in-out focus:outline-none"
+              className="bg-green-200 text-black py-2 px-4 hover:bg-transparent hover:text-green-200 hover:border-green-200 border-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg"
             >
               Submit
             </button>
