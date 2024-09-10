@@ -13,8 +13,8 @@ const IntroductionComponent = () => {
                 <p className="text-lg mb-8 text-gray-300">
                     Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu.
                 </p>
-                <Link href="/about">
-                    <button className="bg-green-200 text-black py-2 font-extrabold px-6 text-lg hover:bg-transparent hover:text-green-200 hover:border-green-200 border-2 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white shadow-md hover:shadow-lg">
+                <Link href="/AboutMe">
+                    <button className="bg-[#97C584] text-black py-2 font-extrabold px-6 text-lg hover:bg-transparent hover:text-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out shadow-md hover:shadow-lg">
                         Read More
                     </button>
                 </Link>
