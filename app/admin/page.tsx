@@ -30,13 +30,15 @@ const Page = () => {
       <div className='min-h-[10vh]'></div>
       <header className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="flex items-center space-x-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300"
-        >
-          <FiLogOut size={20} />
-          <span>Logout</span>
-        </button>
+        <div className='w-100 justify-end flex'>
+          <button
+            onClick={handleLogout}
+            className="flex items-center space-x-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300"
+          >
+            <FiLogOut size={20} />
+            <span>Logout</span>
+          </button>
+        </div>
       </header>
       <main className="flex-grow">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
