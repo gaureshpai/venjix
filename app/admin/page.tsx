@@ -21,7 +21,6 @@ const Page = () => {
 
   const crudPages = [
     { name: 'CRUD Work Items', path: '/admin/work' },
-    { name: 'CRUD Film Items', path: '/admin/film' },
     { name: 'CRUD Portfolio Items', path: '/admin/portfolio' },
   ];
 

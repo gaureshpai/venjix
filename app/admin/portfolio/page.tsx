@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface PortfolioItem {
+  id?: string;
   title: string;
   year: number;
   type: string;
@@ -16,23 +17,72 @@ const PortfolioItemCRUD: React.FC = () => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<PortfolioItem | null>(null);
 
-  const handleCreate = () => {
-    setPortfolioItems([...portfolioItems, newItem]);
-    setNewItem({ title: '', year: 0, type: '', ytUrl: '' });
-  };
+  useEffect(() => {
+    fetchPortfolioItems();
+  }, []);
 
-  const handleUpdate = () => {
-    if (editingIndex !== null) {
-      const updatedItems = [...portfolioItems];
-      updatedItems[editingIndex] = editItem!;
-      setPortfolioItems(updatedItems);
-      setEditingIndex(null);
-      setEditItem(null);
+  const fetchPortfolioItems = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/findall`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setPortfolioItems(data);
+    } catch (error: any) {
+      console.error('Failed to fetch portfolio items:', error.message || error);
     }
   };
 
-  const handleDelete = (index: number) => {
-    setPortfolioItems(portfolioItems.filter((_, i) => i !== index));
+  const handleCreate = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newItem),
+      });
+      const data = await response.json();
+      setPortfolioItems([...portfolioItems, data]);
+      setNewItem({ title: '', year: 0, type: '', ytUrl: '' });
+    } catch (error) {
+      console.error('Failed to create portfolio item:', error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    if (editingIndex !== null && editItem) {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/update?id=${editItem.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(editItem),
+        });
+        const updatedItem = await response.json();
+
+        const updatedItems = [...portfolioItems];
+        updatedItems[editingIndex] = updatedItem;
+        setPortfolioItems(updatedItems);
+        setEditingIndex(null);
+        setEditItem(null);
+      } catch (error) {
+        console.error('Failed to update portfolio item:', error);
+      }
+    }
+  };
+
+  const handleDelete = async (index: number) => {
+    const itemToDelete = portfolioItems[index];
+    if (!itemToDelete.id) return;
+
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/delete?id=${itemToDelete.id}`, {
+        method: 'DELETE',
+      });
+
+      setPortfolioItems(portfolioItems.filter((_, i) => i !== index));
+    } catch (error) {
+      console.error('Failed to delete portfolio item:', error);
+    }
   };
 
   const handleEdit = (index: number) => {
@@ -42,11 +92,11 @@ const PortfolioItemCRUD: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-screen">
-      <div className='min-h-[10vh]'></div>
-      <div className='w-100 justify-end flex'>
+      <div className="min-h-[10vh]"></div>
+      <div className="w-full flex justify-end">
         <Link
-          href={'/admin'}
-          className="bg-gray-700 text-white py-2 w-100 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out"
+          href="/admin"
+          className="bg-gray-700 text-white py-2 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out"
         >
           Go to Admin Page
         </Link>
@@ -54,7 +104,6 @@ const PortfolioItemCRUD: React.FC = () => {
       <h1 className="text-6xl mb-12 font-bold">Portfolio Item CRUD</h1>
 
       <div className="grid md:grid-cols-2 gap-12 items-start">
-        {/* Create Portfolio Item Section */}
         <div className="p-8 rounded-lg bg-gray-800">
           <h2 className="text-2xl font-semibold mb-6">Create Portfolio Item</h2>
           <input
@@ -93,7 +142,6 @@ const PortfolioItemCRUD: React.FC = () => {
           </button>
         </div>
 
-        {/* Edit Portfolio Item Section */}
         {editingIndex !== null && (
           <div className="p-8 rounded-lg bg-gray-800">
             <h2 className="text-2xl font-semibold mb-6">Edit Portfolio Item</h2>
@@ -135,7 +183,6 @@ const PortfolioItemCRUD: React.FC = () => {
         )}
       </div>
 
-      {/* Display Portfolio Items */}
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Portfolio Items</h2>
         <ul>

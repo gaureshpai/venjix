@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface WorkItem {
+  _id?: string;
   title: string;
   ytUrl: string;
 }
@@ -14,23 +15,63 @@ const WorkItemCRUD: React.FC = () => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<WorkItem | null>(null);
 
-  const handleCreate = () => {
-    setWorkItems([...workItems, newItem]);
-    setNewItem({ title: '', ytUrl: '' });
-  };
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/findall`)
+      .then((res) => res.json())
+      .then((data) => setWorkItems(data))
+      .catch((err) => console.error('Error fetching work items:', err));
+  }, []);
 
-  const handleUpdate = () => {
-    if (editingIndex !== null) {
-      const updatedItems = [...workItems];
-      updatedItems[editingIndex] = editItem!;
-      setWorkItems(updatedItems);
-      setEditingIndex(null);
-      setEditItem(null);
+  const handleCreate = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newItem),
+      });
+      const createdItem = await response.json();
+      setWorkItems([...workItems, createdItem]);
+      setNewItem({ title: '', ytUrl: '' });
+    } catch (error) {
+      console.error('Error creating item:', error);
     }
   };
 
-  const handleDelete = (index: number) => {
-    setWorkItems(workItems.filter((_, i) => i !== index));
+  const handleUpdate = async () => {
+    if (editingIndex !== null && editItem && editItem._id) {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/update?id=${editItem._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(editItem),
+        });
+        if (response.ok) {
+          const updatedItems = [...workItems];
+          updatedItems[editingIndex] = editItem;
+          setWorkItems(updatedItems);
+          setEditingIndex(null);
+          setEditItem(null);
+        }
+      } catch (error) {
+        console.error('Error updating item:', error);
+      }
+    }
+  };
+
+  const handleDelete = async (index: number) => {
+    const itemToDelete = workItems[index];
+    if (itemToDelete._id) {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/delete?id=${itemToDelete._id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          setWorkItems(workItems.filter((_, i) => i !== index));
+        }
+      } catch (error) {
+        console.error('Error deleting item:', error);
+      }
+    }
   };
 
   const handleEdit = (index: number) => {
@@ -52,7 +93,6 @@ const WorkItemCRUD: React.FC = () => {
       <h1 className="text-6xl mb-12 font-bold">Work Item CRUD</h1>
 
       <div className="grid md:grid-cols-2 gap-12 items-start">
-        {/* Create Work Item Section */}
         <div className="p-8 rounded-lg bg-gray-800">
           <h2 className="text-2xl font-semibold mb-6">Create Work Item</h2>
           <input
@@ -77,7 +117,6 @@ const WorkItemCRUD: React.FC = () => {
           </button>
         </div>
 
-        {/* Edit Work Item Section */}
         {editingIndex !== null && (
           <div className="p-8 rounded-lg">
             <h2 className="text-2xl font-semibold mb-6">Edit Work Item</h2>
@@ -105,7 +144,6 @@ const WorkItemCRUD: React.FC = () => {
         )}
       </div>
 
-      {/* Display Work Items */}
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Work Items</h2>
         <ul>
