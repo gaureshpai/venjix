@@ -24,7 +24,7 @@ const FeaturedFilms = () => {
     return (
         <div className="bg-black text-white py-16 px-8 md:px-16 lg:px-24">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-5xl md:text-6xl font-bold mb-12">Featured Films</h2>
+                <h2 className="text-5xl md:text-6xl font-bold mb-12">Featured Videos</h2>
 
                 <div className="space-y-16 md:space-y-24">
                     {films.map((film, index) => (
