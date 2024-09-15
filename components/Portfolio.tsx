@@ -10,15 +10,15 @@ interface PortfolioItemType {
 }
 
 const portfolioItems: PortfolioItemType[] = [
-    { title: "Only you", year: 2020, type: "Music Video", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Childhood", year: 2021, type: "Film", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "MoveU", year: 2022, type: "Commercial", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Third Video", year: 2022, type: "Music Video", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "The city", year: 2020, type: "Film", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Neighborhood", year: 2022, type: "Film", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Second Video", year: 2021, type: "Music Video", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Volkswagen", year: 2020, type: "Commercial", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Dream Team", year: 2023, type: "Film", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Only you", year: 2020, type: "Teasers", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Childhood", year: 2021, type: "Full Videos", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "MoveU", year: 2022, type: "Highlights", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Third Video", year: 2022, type: "Teasers", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "The city", year: 2020, type: "Full Videos", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Neighborhood", year: 2022, type: "Full Videos", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Second Video", year: 2021, type: "Teasers", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Volkswagen", year: 2020, type: "Highlights", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { title: "Dream Team", year: 2023, type: "Full Videos", ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
 ];
 
 const PortfolioItem: React.FC<{ item: PortfolioItemType }> = ({ item }) => (
@@ -42,7 +42,7 @@ const Portfolio: React.FC = () => {
         ? portfolioItems
         : portfolioItems.filter(item => item.type === filter);
 
-    const filters = ['All', 'Music Video', 'Film', 'Commercial'];
+    const filters = ['All', 'Teasers', 'Full Videos', 'Highlights'];
 
     return (
         <div className="text-white py-16 px-8 md:px-16 lg:px-24 bg-black">
