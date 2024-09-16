@@ -27,7 +27,7 @@ const PortfolioItemCRUD: React.FC = () => {
 
   const typeOptions = ['Highlights', 'Teasers', 'Full Videos','Reels','None'];
   const subtypeOptions = ['None',
-    'Wedding','Pre Wedding','Engagement','Baby Shower','Maternity Shoot',
+    'Wedding', 'Pre Wedding', 'Engagement', 'Reception','Baby Shower','Maternity Shoot',
     'Baby Naming','Bridal','Corporate Videos','Tutorials',
     'Event Highlights','Music Videos','Documentaries','Commercials'];
 
@@ -126,28 +126,13 @@ const PortfolioItemCRUD: React.FC = () => {
     setEditItem(portfolioItems[index]);
   };
 
-  if (isLoading)
-    return (
-      <div className='min-h-[80vh]'>
-        <div className="min-h-[10vh]"></div>
-        Loading...
-      </div>
-    );
-  if (error)
-    return (
-      <div className='min-h-[80vh]'>
-        <div className="min-h-[10vh]"></div>
-        Error: {error}
-      </div>
-    );
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
       <div className="min-h-[10vh]"></div>
-      <div className="w-full flex justify-end">
+      <div className="w-full flex justify-end top-[10vh] relative">
         <Link
           href="/admin"
-          className="bg-gray-700 text-white py-2 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out"
+          className="bg-gray-700 flex text-white py-2 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out cursor-pointer"
         >
           Go to Admin Page
         </Link>

@@ -36,6 +36,7 @@ const ServicesComponent = () => {
                                 alt={service.title}
                                 fill
                                 style={{ objectFit: 'cover' }}
+                                className='w-auto h-auto'
                             />
                         </div>
                         <h3 className="text-3xl font-semibold mb-4">{service.title}</h3>

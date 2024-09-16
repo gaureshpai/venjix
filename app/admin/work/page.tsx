@@ -118,26 +118,13 @@ const WorkItemCRUD: React.FC = () => {
     setEditItem(workItems[index]);
   };
 
-  if (isLoading)
-    return
-  <div className='min-h-[80vh]'>
-        <div className="min-h-[10vh]"></div>
-        Loading...
-      </div>;
-  if (error)
-    return
-  <div className='min-h-[80vh]'>
-        <div className="min-h-[10vh]"></div>
-        Error: {error}
-      </div>;
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
       <div className="min-h-[10vh]"></div>
-      <div className="w-full flex justify-end">
+      <div className="w-full flex justify-end top-[10vh] relative">
         <Link
           href="/admin"
-          className="bg-gray-700 text-white py-2 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out"
+          className="bg-gray-700 flex text-white py-2 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out cursor-pointer"
         >
           Go to Admin Page
         </Link>
@@ -202,8 +189,8 @@ const WorkItemCRUD: React.FC = () => {
           {workItems.map((item, index) => (
             <li key={item.id} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
               <div>
-                <strong>{item.title}</strong>
-                <div>YouTube URL: {item.yturl}</div>
+                <div><strong>Title: </strong>{item.title}</div>
+                <div><strong>YouTube URL: </strong>{item.yturl}</div>
               </div>
               <div>
                 <button

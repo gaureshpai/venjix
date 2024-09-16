@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 
@@ -8,15 +8,39 @@ const ContactForm = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [responseMessage, setResponseMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+    setIsSubmitting(true);
+    setResponseMessage('');
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/mail/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+
+      if (response.status === 200 && data.result) {
+        setFormData({ fullName: '', email: '', message: '' });
+        setResponseMessage('Message sent successfully!');
+      } else {
+        throw new Error(data.message || 'Failed to send message');
+      }
+    } catch (error) {
+      setResponseMessage('Failed to send message. Please try again.');
+      console.error('Failed to send message:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -24,13 +48,11 @@ const ContactForm = () => {
       <h1 className="text-6xl mb-12 font-bold p-8">Let’s work together</h1>
 
       <div className='grid md:grid-cols-2 gap-12 items-start'>
-        {/* Contact Info Section */}
         <div className="p-8 rounded-lg">
           <p className="text-lg mb-8">
             We're excited to hear from you and discuss how we can collaborate on your next project.
             Feel free to reach out using the contact information below or fill out the form.
           </p>
-
           <div className="space-y-4">
             <div className="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,7 +76,6 @@ const ContactForm = () => {
           </div>
         </div>
 
-        {/* Contact Form Section */}
         <div className="p-8 rounded-lg">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -103,8 +124,14 @@ const ContactForm = () => {
               type="submit"
               className="bg-[#97C584] text-black py-2 px-4 hover:bg-transparent hover:text-[#97C584] hover:border-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out font-extrabold"
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
+
+            {responseMessage && (
+              <p className={`mt-4 font-bold ${responseMessage.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>
+                {responseMessage}
+              </p>
+            )}
           </form>
         </div>
       </div>

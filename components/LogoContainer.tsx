@@ -7,7 +7,7 @@ const LogoContainer = () => {
         <div className="flex justify-center items-center">
             <Link href='/'>
                 <Image
-                    className="cursor-pointer"
+                    className="cursor-pointer h-auto w-auto"
                     src="/images/logo.png"
                     alt="Next.js Logo"
                     width={180}
