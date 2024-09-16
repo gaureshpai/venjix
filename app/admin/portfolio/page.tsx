@@ -14,7 +14,7 @@ interface PortfolioItem {
 
 interface ApiResponse {
   status: number;
-  result: PortfolioItem[];
+  result: PortfolioItem[] | PortfolioItem;
 }
 
 const PortfolioItemCRUD: React.FC = () => {
@@ -24,6 +24,12 @@ const PortfolioItemCRUD: React.FC = () => {
   const [editItem, setEditItem] = useState<PortfolioItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const typeOptions = ['Highlights', 'Teasers', 'Full Videos','Reels','None'];
+  const subtypeOptions = ['None',
+    'Wedding','Pre Wedding','Engagement','Baby Shower','Maternity Shoot',
+    'Baby Naming','Bridal','Corporate Videos','Tutorials',
+    'Event Highlights','Music Videos','Documentaries','Commercials'];
 
   const fetchPortfolioItems = useCallback(async () => {
     setIsLoading(true);
@@ -35,7 +41,7 @@ const PortfolioItemCRUD: React.FC = () => {
       }
       const data: ApiResponse = await response.json();
       if (data.status === 200) {
-        setPortfolioItems(data.result);
+        setPortfolioItems(data.result as PortfolioItem[]);
       } else {
         throw new Error(`API returned status ${data.status}`);
       }
@@ -60,9 +66,9 @@ const PortfolioItemCRUD: React.FC = () => {
       });
       const data: ApiResponse = await response.json();
       if (data.status === 200 && data.result) {
-        const portfolioItems = Array.isArray(data.result) ? data.result[0] : data.result;
-        setPortfolioItems(prevItems => [...prevItems, portfolioItems]);
-        setNewItem({ title: '', year: 0, type: '', subtype: '', yturl: '' });
+        const portfolioItem = Array.isArray(data.result) ? data.result[0] : data.result;
+        setPortfolioItems(prevItems => [...prevItems, portfolioItem]);
+        setNewItem({ title: '', year: 2023, type: '', subtype: '', yturl: '' });
       } else {
         throw new Error(`Failed to create item: ${JSON.stringify(data)}`);
       }
@@ -84,7 +90,6 @@ const PortfolioItemCRUD: React.FC = () => {
           const updatedItem = Array.isArray(data.result) ? data.result[0] : data.result;
           setPortfolioItems(prevItems => {
             const newItems = [...prevItems];
-            newItems[editingIndex] = data.result[0];
             newItems[editingIndex] = updatedItem;
             return newItems;
           });
@@ -121,18 +126,20 @@ const PortfolioItemCRUD: React.FC = () => {
     setEditItem(portfolioItems[index]);
   };
 
-  if (isLoading) 
-    return 
-  <div className='min-h-[80vh]'>
+  if (isLoading)
+    return (
+      <div className='min-h-[80vh]'>
         <div className="min-h-[10vh]"></div>
-          Loading...
-      </div>;
-  if (error) 
-    return 
-  <div className='min-h-[80vh]'>
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className='min-h-[80vh]'>
         <div className="min-h-[10vh]"></div>
         Error: {error}
-      </div>;
+      </div>
+    );
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
@@ -164,20 +171,28 @@ const PortfolioItemCRUD: React.FC = () => {
             onChange={(e) => setNewItem({ ...newItem, year: parseInt(e.target.value) })}
             className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
           />
-          <input
-            type="text"
-            placeholder="Type"
+          <select
+            title='Type'
             value={newItem.type}
             onChange={(e) => setNewItem({ ...newItem, type: e.target.value })}
-            className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
-          />
-          <input
-            type="text"
-            placeholder="Subtype"
+            className="w-full px-3 py-2 bg-transparent text-white border-b border-white focus:outline-none mb-4"
+          >
+            <option value="" disabled>Select Type</option>
+            {typeOptions.map(option => (
+              <option key={option} value={option} className='bg-gray-800'>{option}</option>
+            ))}
+          </select>
+          <select
+            title='Subtype'
             value={newItem.subtype}
             onChange={(e) => setNewItem({ ...newItem, subtype: e.target.value })}
-            className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
-          />
+            className="w-full px-3 py-2 bg-transparent text-white border-b border-white focus:outline-none mb-4"
+          >
+            <option value="" disabled>Select Subtype</option>
+            {subtypeOptions.map(option => (
+              <option key={option} value={option} className='bg-gray-800'>{option}</option>
+            ))}
+          </select>
           <input
             type="text"
             placeholder="YouTube URL"
@@ -210,20 +225,26 @@ const PortfolioItemCRUD: React.FC = () => {
               onChange={(e) => setEditItem({ ...editItem, year: parseInt(e.target.value) })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
-            <input
-              type="text"
-              placeholder="Type"
+            <select
+              title='Type'
               value={editItem.type}
               onChange={(e) => setEditItem({ ...editItem, type: e.target.value })}
-              className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
-            />
-            <input
-              type="text"
-              placeholder="Subtype"
+              className="w-full px-3 py-2 bg-transparent text-white border-b border-white focus:outline-none mb-4"
+            >
+              {typeOptions.map(option => (
+                <option key={option} value={option} className='bg-gray-800'>{option}</option>
+              ))}
+            </select>
+            <select
+              title='Subtype'
               value={editItem.subtype}
               onChange={(e) => setEditItem({ ...editItem, subtype: e.target.value })}
-              className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
-            />
+              className="w-full px-3 py-2 bg-transparent text-white border-b border-white focus:outline-none mb-4"
+            >
+              {subtypeOptions.map(option => (
+                <option key={option} value={option} className='bg-gray-800'>{option}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="YouTube URL"
