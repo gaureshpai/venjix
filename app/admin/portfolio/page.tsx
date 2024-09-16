@@ -1,38 +1,55 @@
 'use client'
 
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 interface PortfolioItem {
-  id?: string;
+  id: number;
   title: string;
   year: number;
   type: string;
-  ytUrl: string;
+  subtype: string;
+  yturl: string;
+}
+
+interface ApiResponse {
+  status: number;
+  result: PortfolioItem[];
 }
 
 const PortfolioItemCRUD: React.FC = () => {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
-  const [newItem, setNewItem] = useState<PortfolioItem>({ title: '', year: 0, type: '', ytUrl: '' });
+  const [newItem, setNewItem] = useState<Omit<PortfolioItem, 'id'>>({ title: '', year: 0, type: '', subtype: '', yturl: '' });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<PortfolioItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchPortfolioItems();
-  }, []);
-
-  const fetchPortfolioItems = async () => {
+  const fetchPortfolioItems = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/findall`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
-      setPortfolioItems(data);
+      const data: ApiResponse = await response.json();
+      if (data.status === 200) {
+        setPortfolioItems(data.result);
+      } else {
+        throw new Error(`API returned status ${data.status}`);
+      }
     } catch (error: any) {
-      console.error('Failed to fetch portfolio items:', error.message || error);
+      setError(`Failed to fetch portfolio items: ${error.message || error}`);
+      console.error('Failed to fetch portfolio items:', error);
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchPortfolioItems();
+  }, [fetchPortfolioItems]);
 
   const handleCreate = async () => {
     try {
@@ -41,9 +58,13 @@ const PortfolioItemCRUD: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newItem),
       });
-      const data = await response.json();
-      setPortfolioItems([...portfolioItems, data]);
-      setNewItem({ title: '', year: 0, type: '', ytUrl: '' });
+      const data: ApiResponse = await response.json();
+      if (data.status === 200 && data.result.length > 0) {
+        setPortfolioItems(prevItems => [...prevItems, data.result[0]]);
+        setNewItem({ title: '', year: 0, type: '', subtype: '', yturl: '' });
+      } else {
+        throw new Error(`Failed to create item: ${JSON.stringify(data)}`);
+      }
     } catch (error) {
       console.error('Failed to create portfolio item:', error);
     }
@@ -53,17 +74,22 @@ const PortfolioItemCRUD: React.FC = () => {
     if (editingIndex !== null && editItem) {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/update?id=${editItem.id}`, {
-          method: 'PUT',
+          method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(editItem),
         });
-        const updatedItem = await response.json();
-
-        const updatedItems = [...portfolioItems];
-        updatedItems[editingIndex] = updatedItem;
-        setPortfolioItems(updatedItems);
-        setEditingIndex(null);
-        setEditItem(null);
+        const data: ApiResponse = await response.json();
+        if (data.status === 200 && data.result.length > 0) {
+          setPortfolioItems(prevItems => {
+            const newItems = [...prevItems];
+            newItems[editingIndex] = data.result[0];
+            return newItems;
+          });
+          setEditingIndex(null);
+          setEditItem(null);
+        } else {
+          throw new Error(`Failed to update item: ${JSON.stringify(data)}`);
+        }
       } catch (error) {
         console.error('Failed to update portfolio item:', error);
       }
@@ -72,14 +98,16 @@ const PortfolioItemCRUD: React.FC = () => {
 
   const handleDelete = async (index: number) => {
     const itemToDelete = portfolioItems[index];
-    if (!itemToDelete.id) return;
-
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/delete?id=${itemToDelete.id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/delete?id=${itemToDelete.id}`, {
         method: 'DELETE',
       });
-
-      setPortfolioItems(portfolioItems.filter((_, i) => i !== index));
+      const data: ApiResponse = await response.json();
+      if (data.status === 200) {
+        setPortfolioItems(prevItems => prevItems.filter((_, i) => i !== index));
+      } else {
+        throw new Error(`Failed to delete item: ${JSON.stringify(data)}`);
+      }
     } catch (error) {
       console.error('Failed to delete portfolio item:', error);
     }
@@ -89,6 +117,19 @@ const PortfolioItemCRUD: React.FC = () => {
     setEditingIndex(index);
     setEditItem(portfolioItems[index]);
   };
+
+  if (isLoading) 
+    return 
+      <div>
+        <div className="min-h-[10vh]"></div>
+          Loading...
+      </div>;
+  if (error) 
+    return 
+      <div>
+        <div className="min-h-[10vh]"></div>
+        Error: {error}
+      </div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-screen">
@@ -129,9 +170,16 @@ const PortfolioItemCRUD: React.FC = () => {
           />
           <input
             type="text"
+            placeholder="Subtype"
+            value={newItem.subtype}
+            onChange={(e) => setNewItem({ ...newItem, subtype: e.target.value })}
+            className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
+          />
+          <input
+            type="text"
             placeholder="YouTube URL"
-            value={newItem.ytUrl}
-            onChange={(e) => setNewItem({ ...newItem, ytUrl: e.target.value })}
+            value={newItem.yturl}
+            onChange={(e) => setNewItem({ ...newItem, yturl: e.target.value })}
             className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
           />
           <button
@@ -142,35 +190,42 @@ const PortfolioItemCRUD: React.FC = () => {
           </button>
         </div>
 
-        {editingIndex !== null && (
+        {editingIndex !== null && editItem && (
           <div className="p-8 rounded-lg bg-gray-800">
             <h2 className="text-2xl font-semibold mb-6">Edit Portfolio Item</h2>
             <input
               type="text"
               placeholder="Title"
-              value={editItem?.title || ''}
-              onChange={(e) => setEditItem({ ...editItem!, title: e.target.value })}
+              value={editItem.title}
+              onChange={(e) => setEditItem({ ...editItem, title: e.target.value })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <input
               type="number"
               placeholder="Year"
-              value={editItem?.year}
-              onChange={(e) => setEditItem({ ...editItem!, year: parseInt(e.target.value) })}
+              value={editItem.year}
+              onChange={(e) => setEditItem({ ...editItem, year: parseInt(e.target.value) })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <input
               type="text"
               placeholder="Type"
-              value={editItem?.type || ''}
-              onChange={(e) => setEditItem({ ...editItem!, type: e.target.value })}
+              value={editItem.type}
+              onChange={(e) => setEditItem({ ...editItem, type: e.target.value })}
+              className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
+            />
+            <input
+              type="text"
+              placeholder="Subtype"
+              value={editItem.subtype}
+              onChange={(e) => setEditItem({ ...editItem, subtype: e.target.value })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <input
               type="text"
               placeholder="YouTube URL"
-              value={editItem?.ytUrl || ''}
-              onChange={(e) => setEditItem({ ...editItem!, ytUrl: e.target.value })}
+              value={editItem.yturl}
+              onChange={(e) => setEditItem({ ...editItem, yturl: e.target.value })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <button
@@ -187,12 +242,13 @@ const PortfolioItemCRUD: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4">Portfolio Items</h2>
         <ul>
           {portfolioItems.map((item, index) => (
-            <li key={index} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
+            <li key={item.id} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
               <div>
                 <strong>{item.title}</strong>
                 <div>Year: {item.year}</div>
                 <div>Type: {item.type}</div>
-                <div>{item.ytUrl}</div>
+                <div>Subtype: {item.subtype}</div>
+                <div>YouTube URL: {item.yturl}</div>
               </div>
               <div>
                 <button
