@@ -56,8 +56,10 @@ const WorkItemCRUD: React.FC = () => {
         body: JSON.stringify(newItem),
       });
       const data: ApiResponse = await response.json();
-      if (data.status === 200 && data.result.length > 0) {
-        setWorkItems(prevItems => [...prevItems, data.result[0]]);
+
+      if (data.status === 200 && data.result) {
+        const newWorkItem = Array.isArray(data.result) ? data.result[0] : data.result;
+        setWorkItems(prevItems => [...prevItems, newWorkItem]);
         setNewItem({ title: '', yturl: '' });
       } else {
         throw new Error(`Failed to create item: ${JSON.stringify(data)}`);
@@ -76,10 +78,11 @@ const WorkItemCRUD: React.FC = () => {
           body: JSON.stringify(editItem),
         });
         const data: ApiResponse = await response.json();
-        if (data.status === 200 && data.result.length > 0) {
+        if (data.status === 200 && data.result) {
+          const updatedItem = Array.isArray(data.result) ? data.result[0] : data.result;
           setWorkItems(prevItems => {
             const newItems = [...prevItems];
-            newItems[editingIndex] = data.result[0];
+            newItems[editingIndex] = updatedItem;
             return newItems;
           });
           setEditingIndex(null);
@@ -117,19 +120,19 @@ const WorkItemCRUD: React.FC = () => {
 
   if (isLoading)
     return
-      <div>
+  <div className='min-h-[80vh]'>
         <div className="min-h-[10vh]"></div>
         Loading...
       </div>;
   if (error)
     return
-      <div>
+  <div className='min-h-[80vh]'>
         <div className="min-h-[10vh]"></div>
         Error: {error}
       </div>;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
       <div className="min-h-[10vh]"></div>
       <div className="w-full flex justify-end">
         <Link
