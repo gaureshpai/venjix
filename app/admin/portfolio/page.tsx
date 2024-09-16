@@ -19,7 +19,7 @@ interface ApiResponse {
 
 const PortfolioItemCRUD: React.FC = () => {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
-  const [newItem, setNewItem] = useState<Omit<PortfolioItem, 'id'>>({ title: '', year: 0, type: '', subtype: '', yturl: '' });
+  const [newItem, setNewItem] = useState<Omit<PortfolioItem, 'id'>>({ title: '', year: 2023, type: '', subtype: '', yturl: '' });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<PortfolioItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -59,8 +59,9 @@ const PortfolioItemCRUD: React.FC = () => {
         body: JSON.stringify(newItem),
       });
       const data: ApiResponse = await response.json();
-      if (data.status === 200 && data.result.length > 0) {
-        setPortfolioItems(prevItems => [...prevItems, data.result[0]]);
+      if (data.status === 200 && data.result) {
+        const portfolioItems = Array.isArray(data.result) ? data.result[0] : data.result;
+        setPortfolioItems(prevItems => [...prevItems, portfolioItems]);
         setNewItem({ title: '', year: 0, type: '', subtype: '', yturl: '' });
       } else {
         throw new Error(`Failed to create item: ${JSON.stringify(data)}`);
@@ -79,10 +80,12 @@ const PortfolioItemCRUD: React.FC = () => {
           body: JSON.stringify(editItem),
         });
         const data: ApiResponse = await response.json();
-        if (data.status === 200 && data.result.length > 0) {
+        if (data.status === 200 && data.result) {
+          const updatedItem = Array.isArray(data.result) ? data.result[0] : data.result;
           setPortfolioItems(prevItems => {
             const newItems = [...prevItems];
             newItems[editingIndex] = data.result[0];
+            newItems[editingIndex] = updatedItem;
             return newItems;
           });
           setEditingIndex(null);
@@ -120,19 +123,19 @@ const PortfolioItemCRUD: React.FC = () => {
 
   if (isLoading) 
     return 
-      <div>
+  <div className='min-h-[80vh]'>
         <div className="min-h-[10vh]"></div>
           Loading...
       </div>;
   if (error) 
     return 
-      <div>
+  <div className='min-h-[80vh]'>
         <div className="min-h-[10vh]"></div>
         Error: {error}
       </div>;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
       <div className="min-h-[10vh]"></div>
       <div className="w-full flex justify-end">
         <Link
