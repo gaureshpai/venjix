@@ -26,17 +26,17 @@ const ContactForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
+      
       const data = await response.json();
 
       if (response.status === 200 && data.result) {
         setFormData({ fullName: '', email: '', message: '' });
-        setResponseMessage('Message sent successfully!'); // Success message
+        setResponseMessage('Message sent successfully!');
       } else {
         throw new Error(data.message || 'Failed to send message');
       }
     } catch (error) {
-      setResponseMessage('Failed to send message. Please try again.'); // Error message
+      setResponseMessage('Failed to send message. Please try again.');
       console.error('Failed to send message:', error);
     } finally {
       setIsSubmitting(false);
