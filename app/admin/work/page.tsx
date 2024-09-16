@@ -115,8 +115,18 @@ const WorkItemCRUD: React.FC = () => {
     setEditItem(workItems[index]);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading)
+    return
+      <div>
+        <div className="min-h-[10vh]"></div>
+        Loading...
+      </div>;
+  if (error)
+    return
+      <div>
+        <div className="min-h-[10vh]"></div>
+        Error: {error}
+      </div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-screen">
