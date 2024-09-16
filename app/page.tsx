@@ -3,6 +3,7 @@ import IntroductionComponent from "@/components/IntroductionComponent";
 import EditorProfileComponent from "@/components/EditorProfileComponent";
 import ServicesComponent from "@/components/ServicesComponent";
 import RecentWorkComponent from "@/components/RecentWorkComponent";
+import HomeStudio from "@/components/HomeStudio";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <EditorProfileComponent/>
       <ServicesComponent/>
       <RecentWorkComponent/>
+      <HomeStudio />
     </main>
   );
 }
