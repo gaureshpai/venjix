@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState, useCallback } from 'react';
 
 interface WorkItem {
-  _id: string;
+  id: string;
   title: string;
   yturl: string;
 }
@@ -16,7 +16,7 @@ interface ApiResponse {
 
 const WorkItemCRUD: React.FC = () => {
   const [workItems, setWorkItems] = useState<WorkItem[]>([]);
-  const [newItem, setNewItem] = useState<Omit<WorkItem, '_id'>>({ title: '', yturl: '' });
+  const [newItem, setNewItem] = useState<Omit<WorkItem, 'id'>>({ title: '', yturl: '' });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<WorkItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -70,8 +70,8 @@ const WorkItemCRUD: React.FC = () => {
   const handleUpdate = async () => {
     if (editingIndex !== null && editItem) {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/update?id=${editItem._id}`, {
-          method: 'PUT',
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/update?id=${editItem.id}`, {
+          method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(editItem),
         });
@@ -96,7 +96,7 @@ const WorkItemCRUD: React.FC = () => {
   const handleDelete = async (index: number) => {
     const itemToDelete = workItems[index];
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/delete?id=${itemToDelete._id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/delete?id=${itemToDelete.id}`, {
         method: 'DELETE',
       });
       const data: ApiResponse = await response.json();
@@ -197,7 +197,7 @@ const WorkItemCRUD: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4">Work Items</h2>
         <ul>
           {workItems.map((item, index) => (
-            <li key={item._id} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
+            <li key={item.id} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
               <div>
                 <strong>{item.title}</strong>
                 <div>YouTube URL: {item.yturl}</div>
