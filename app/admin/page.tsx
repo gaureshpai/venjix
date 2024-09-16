@@ -40,7 +40,7 @@ const Page = () => {
         </div>
       </header>
       <main className="flex-grow">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {crudPages.map((page) => (
             <button
               key={page.path}
