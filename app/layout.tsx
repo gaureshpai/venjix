@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@/public/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -20,10 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className='font-Lora'>
         <SessionProvider>
-          <Navbar/>
-            {children}
-            <ContactForm/>
-          <Footer/>
+          <Navbar />
+          {children}
+          <ContactForm />
+          <Footer />
         </SessionProvider>
       </body>
     </html>
