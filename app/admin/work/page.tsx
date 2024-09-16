@@ -1,26 +1,52 @@
-'use client';
+'use client'
 
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 interface WorkItem {
-  _id?: string;
+  _id: string;
   title: string;
   ytUrl: string;
 }
 
+interface ApiResponse {
+  status: number;
+  result: WorkItem[];
+}
+
 const WorkItemCRUD: React.FC = () => {
   const [workItems, setWorkItems] = useState<WorkItem[]>([]);
-  const [newItem, setNewItem] = useState<WorkItem>({ title: '', ytUrl: '' });
+  const [newItem, setNewItem] = useState<Omit<WorkItem, '_id'>>({ title: '', ytUrl: '' });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<WorkItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchWorkItems = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/findall`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data: ApiResponse = await response.json();
+      if (data.status === 200) {
+        setWorkItems(data.result);
+      } else {
+        throw new Error(`API returned status ${data.status}`);
+      }
+    } catch (error: any) {
+      setError(`Failed to fetch work items: ${error.message || error}`);
+      console.error('Failed to fetch work items:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/findall`)
-      .then((res) => res.json())
-      .then((data) => setWorkItems(data))
-      .catch((err) => console.error('Error fetching work items:', err));
-  }, []);
+    fetchWorkItems();
+  }, [fetchWorkItems]);
 
   const handleCreate = async () => {
     try {
@@ -29,48 +55,58 @@ const WorkItemCRUD: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newItem),
       });
-      const createdItem = await response.json();
-      setWorkItems([...workItems, createdItem]);
-      setNewItem({ title: '', ytUrl: '' });
+      const data: ApiResponse = await response.json();
+      if (data.status === 200 && data.result.length > 0) {
+        setWorkItems(prevItems => [...prevItems, data.result[0]]);
+        setNewItem({ title: '', ytUrl: '' });
+      } else {
+        throw new Error(`Failed to create item: ${JSON.stringify(data)}`);
+      }
     } catch (error) {
-      console.error('Error creating item:', error);
+      console.error('Failed to create work item:', error);
     }
   };
 
   const handleUpdate = async () => {
-    if (editingIndex !== null && editItem && editItem._id) {
+    if (editingIndex !== null && editItem) {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/update?id=${editItem._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(editItem),
         });
-        if (response.ok) {
-          const updatedItems = [...workItems];
-          updatedItems[editingIndex] = editItem;
-          setWorkItems(updatedItems);
+        const data: ApiResponse = await response.json();
+        if (data.status === 200 && data.result.length > 0) {
+          setWorkItems(prevItems => {
+            const newItems = [...prevItems];
+            newItems[editingIndex] = data.result[0];
+            return newItems;
+          });
           setEditingIndex(null);
           setEditItem(null);
+        } else {
+          throw new Error(`Failed to update item: ${JSON.stringify(data)}`);
         }
       } catch (error) {
-        console.error('Error updating item:', error);
+        console.error('Failed to update work item:', error);
       }
     }
   };
 
   const handleDelete = async (index: number) => {
     const itemToDelete = workItems[index];
-    if (itemToDelete._id) {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/delete?id=${itemToDelete._id}`, {
-          method: 'DELETE',
-        });
-        if (response.ok) {
-          setWorkItems(workItems.filter((_, i) => i !== index));
-        }
-      } catch (error) {
-        console.error('Error deleting item:', error);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/delete?id=${itemToDelete._id}`, {
+        method: 'DELETE',
+      });
+      const data: ApiResponse = await response.json();
+      if (data.status === 200) {
+        setWorkItems(prevItems => prevItems.filter((_, i) => i !== index));
+      } else {
+        throw new Error(`Failed to delete item: ${JSON.stringify(data)}`);
       }
+    } catch (error) {
+      console.error('Failed to delete work item:', error);
     }
   };
 
@@ -79,13 +115,26 @@ const WorkItemCRUD: React.FC = () => {
     setEditItem(workItems[index]);
   };
 
+  if (isLoading)
+    return
+      <div>
+        <div className="min-h-[10vh]"></div>
+        Loading...
+      </div>;
+  if (error)
+    return
+      <div>
+        <div className="min-h-[10vh]"></div>
+        Error: {error}
+      </div>;
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-screen">
-      <div className='min-h-[10vh]'></div>
-      <div className='w-100 justify-end flex'>
+      <div className="min-h-[10vh]"></div>
+      <div className="w-full flex justify-end">
         <Link
-          href={'/admin'}
-          className="bg-gray-700 text-white py-2 w-100 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out"
+          href="/admin"
+          className="bg-gray-700 text-white py-2 px-4 rounded mb-8 hover:bg-gray-800 transition duration-300 ease-in-out"
         >
           Go to Admin Page
         </Link>
@@ -117,21 +166,21 @@ const WorkItemCRUD: React.FC = () => {
           </button>
         </div>
 
-        {editingIndex !== null && (
-          <div className="p-8 rounded-lg">
+        {editingIndex !== null && editItem && (
+          <div className="p-8 rounded-lg bg-gray-800">
             <h2 className="text-2xl font-semibold mb-6">Edit Work Item</h2>
             <input
               type="text"
               placeholder="Title"
-              value={editItem?.title || ''}
-              onChange={(e) => setEditItem({ ...editItem!, title: e.target.value })}
+              value={editItem.title}
+              onChange={(e) => setEditItem({ ...editItem, title: e.target.value })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <input
               type="text"
               placeholder="YouTube URL"
-              value={editItem?.ytUrl || ''}
-              onChange={(e) => setEditItem({ ...editItem!, ytUrl: e.target.value })}
+              value={editItem.ytUrl}
+              onChange={(e) => setEditItem({ ...editItem, ytUrl: e.target.value })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <button
@@ -148,10 +197,10 @@ const WorkItemCRUD: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4">Work Items</h2>
         <ul>
           {workItems.map((item, index) => (
-            <li key={index} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
+            <li key={item._id} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
               <div>
                 <strong>{item.title}</strong>
-                <div>{item.ytUrl}</div>
+                <div>YouTube URL: {item.ytUrl}</div>
               </div>
               <div>
                 <button
