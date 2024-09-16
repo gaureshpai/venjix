@@ -71,7 +71,7 @@ const WorkItemCRUD: React.FC = () => {
     if (editingIndex !== null && editItem) {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/work/update?id=${editItem.id}`, {
-          method: 'PUT',
+          method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(editItem),
         });
