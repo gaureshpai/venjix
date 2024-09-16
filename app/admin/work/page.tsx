@@ -6,7 +6,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 interface WorkItem {
   _id: string;
   title: string;
-  ytUrl: string;
+  yturl: string;
 }
 
 interface ApiResponse {
@@ -16,7 +16,7 @@ interface ApiResponse {
 
 const WorkItemCRUD: React.FC = () => {
   const [workItems, setWorkItems] = useState<WorkItem[]>([]);
-  const [newItem, setNewItem] = useState<Omit<WorkItem, '_id'>>({ title: '', ytUrl: '' });
+  const [newItem, setNewItem] = useState<Omit<WorkItem, '_id'>>({ title: '', yturl: '' });
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<WorkItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +58,7 @@ const WorkItemCRUD: React.FC = () => {
       const data: ApiResponse = await response.json();
       if (data.status === 200 && data.result.length > 0) {
         setWorkItems(prevItems => [...prevItems, data.result[0]]);
-        setNewItem({ title: '', ytUrl: '' });
+        setNewItem({ title: '', yturl: '' });
       } else {
         throw new Error(`Failed to create item: ${JSON.stringify(data)}`);
       }
@@ -154,8 +154,8 @@ const WorkItemCRUD: React.FC = () => {
           <input
             type="text"
             placeholder="YouTube URL"
-            value={newItem.ytUrl}
-            onChange={(e) => setNewItem({ ...newItem, ytUrl: e.target.value })}
+            value={newItem.yturl}
+            onChange={(e) => setNewItem({ ...newItem, yturl: e.target.value })}
             className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
           />
           <button
@@ -179,8 +179,8 @@ const WorkItemCRUD: React.FC = () => {
             <input
               type="text"
               placeholder="YouTube URL"
-              value={editItem.ytUrl}
-              onChange={(e) => setEditItem({ ...editItem, ytUrl: e.target.value })}
+              value={editItem.yturl}
+              onChange={(e) => setEditItem({ ...editItem, yturl: e.target.value })}
               className="w-full px-3 py-2 bg-transparent text-white placeholder-white border-b border-white focus:outline-none mb-4"
             />
             <button
@@ -200,7 +200,7 @@ const WorkItemCRUD: React.FC = () => {
             <li key={item._id} className="mb-4 p-4 bg-gray-800 rounded-lg flex items-center justify-between">
               <div>
                 <strong>{item.title}</strong>
-                <div>YouTube URL: {item.ytUrl}</div>
+                <div>YouTube URL: {item.yturl}</div>
               </div>
               <div>
                 <button
