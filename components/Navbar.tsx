@@ -29,7 +29,7 @@ const Navbar = () => {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className="text-white px-3 py-2 rounded-md text-lg 4xl:text-2xl font-medium hover:text-slate-400 transition duration-300"
+                                    className="text-white px-3 py-2 rounded-md text-lg 4xl:text-2xl font-medium hover:text-slate-400 transition duration-300 cursor-pointer"
                                 >
                                     {item.name}
                                 </Link>

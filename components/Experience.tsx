@@ -16,7 +16,7 @@ const Experience = () => {
                             width={600}
                             height={200}
                             style={{ objectFit: 'cover' }}
-                            className="shadow-2xl" 
+                            className="shadow-2xl w-auto h-auto" 
                         />
                     </div>
                     <p className="text-gray-300 text-sm md:text-base leading-relaxed">
