@@ -5,9 +5,9 @@ const Intro = () => {
     return (
         <div className="bg-black text-white py-16 px-8 md:px-16 lg:px-24 mt-16">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="relative h-[350px] md:h-[550px]">
+                <div className="relative h-[75vh]">
                     <Image
-                        src="/images/AlbenSigamani.jpg"
+                        src="/images/vivek.jpg"
                         alt="Editor & Filmmaker"
                         fill
                         style={{ objectFit: 'cover' }}
