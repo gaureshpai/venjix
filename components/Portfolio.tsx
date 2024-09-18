@@ -30,13 +30,9 @@ const PortfolioItemComponent: React.FC<{ item: PortfolioItem }> = ({ item }) => 
 const Portfolio: React.FC = () => {
     const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
     const [filter, setFilter] = useState<string>('All');
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchPortfolioItems = async () => {
-            setIsLoading(true);
-            setError(null);
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/findall`);
                 if (!response.ok) {
@@ -49,10 +45,7 @@ const Portfolio: React.FC = () => {
                     throw new Error(`API returned status ${data.status}`);
                 }
             } catch (error: any) {
-                setError(`Failed to fetch portfolio items: ${error.message || error}`);
                 console.error('Failed to fetch portfolio items:', error);
-            } finally {
-                setIsLoading(false);
             }
         };
 

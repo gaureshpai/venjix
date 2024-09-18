@@ -122,7 +122,7 @@ const ContactForm = () => {
             </div>
             <button
               type="submit"
-              className="bg-[#97C584] text-black py-2 px-4 hover:bg-transparent hover:text-[#97C584] hover:border-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out font-extrabold"
+              className="bg-[#97C584] text-black py-2 px-4 hover:bg-transparent hover:text-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out font-extrabold"
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
