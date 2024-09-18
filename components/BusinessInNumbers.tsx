@@ -7,25 +7,25 @@ const BusinessInNumbers = () => {
                 <div className="text-center mb-12">
                     <h2 className="text-5xl md:text-6xl font-bold mb-6">My Business in Numbers</h2>
                     <p className="text-gray-300">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris.
+                        I am proud to have worked with numerous clients and studios, delivering high-quality video edits and maintaining a high approval rate.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">170+</h3>
-                        <p className="text-gray-300">Enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">200+</h3>
+                        <p className="text-gray-300">Client projects edited with precision</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">15+</h3>
-                        <p className="text-gray-300">Duis aute irure dolor in reprehenderit in voluptate velit</p>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">10+</h3>
+                        <p className="text-gray-300">Studios partnered for creative excellence</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">1,000+</h3>
-                        <p className="text-gray-300">Excepteur sint occaecat cupidatat non proident, sunt</p>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">500+</h3>
+                        <p className="text-gray-300">Videos edited, bringing visions to life</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
-                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">95%</h3>
-                        <p className="text-gray-300">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+                        <h3 className="text-4xl font-bold mb-2 text-[#97C584]">90%</h3>
+                        <p className="text-gray-300">Approval rate, ensuring client satisfaction</p>
                     </div>
                 </div>
             </div>
