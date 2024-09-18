@@ -6,7 +6,7 @@ const Experience = () => {
         <div className="bg-black text-white py-16 px-8 md:px-16 lg:px-24">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="flex flex-col space-y-4 md:space-y-6 text-center justify-center">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-2 p-8">15 Years of experience in the field</h1>
+                    <h1 className="text-5xl md:text-6xl font-bold mb-2 p-8">5 Years of experience in the field</h1>
                 </div>
                 <div className="flex flex-col space-y-6">
                     <div className="relative w-full">
