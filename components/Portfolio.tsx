@@ -69,7 +69,6 @@ const Portfolio: React.FC = () => {
         <div className="text-white py-16 px-8 md:px-16 lg:px-24 bg-black">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-5xl md:text-6xl font-bold mb-8 text-center p-8">My Portfolio</h2>
-                {!isLoading && !error && (
                     <>
                         <div className="flex flex-wrap gap-4 mb-12 text-center justify-center">
                             {filters.map(filterType => (
@@ -93,7 +92,6 @@ const Portfolio: React.FC = () => {
                             ))}
                         </div>
                     </>
-                )}
             </div>
         </div>
     );
