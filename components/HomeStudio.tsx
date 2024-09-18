@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 const HomeStudio = () => {
     const studios = [
-        { id: 1, name: 'Bhoomi_PhotoWOrld', image: '/images/Bhoomi_PhotoWOrld_Logo.png' },
-        { id: 2, name: 'Diamond Photography 1', image: '/images/Diamond Photography  1.png' },
-        { id: 3, name: 'NB STUDIOS simple', image: '/images/NB STUDIOS simple.png' },
-        { id: 4, name: 'renuka didgital studio logo', image: '/images/renuka didgital studio logo.png' },
+        { id: 1, name: 'Bhoomi_PhotoWOrld', image: '/images/Studios/1.png' },
+        { id: 2, name: 'Diamond Photography 1', image: '/images/Studios/2.png' },
+        { id: 3, name: 'NB STUDIOS simple', image: '/images/Studios/3.png' },
+        { id: 4, name: 'renuka didgital studio logo', image: '/images/Studios/4.png' },
     ];
 
     return (
@@ -22,9 +22,8 @@ const HomeStudio = () => {
                             <Image
                                 src={studio.image}
                                 alt={studio.name}
-                                layout="fill"
-                                objectFit="contain"
-                                className="shadow-lg"
+                                fill
+                                className="shadow-lg object-contain"
                             />
                         </div>
                     ))}
