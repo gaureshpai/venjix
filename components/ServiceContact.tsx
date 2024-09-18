@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const ServiceContact = () => {
@@ -14,11 +15,11 @@ const ServiceContact = () => {
                     </p>
                 </div>
                 <div className="flex flex-col justify-center items-center my-6 md:my-10">
-                    <a
+                    <Link
                         href="/Contact"
-                        className="bg-[#97C584] text-black py-2 font-bold px-4 md:py-2 md:px-6 text-base md:text-lg hover:bg-transparent hover:text-green-400 hover:border-green-400 border-2 transition duration-300 ease-in-out shadow-md hover:shadow-lg">
+                        className="bg-[#97C584] text-black py-2 font-bold px-4 md:py-2 md:px-6 text-base md:text-lg hover:bg-transparent hover:text-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out shadow-md hover:shadow-lg">
                         Contact Me
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
