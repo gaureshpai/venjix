@@ -8,9 +8,18 @@ const VideoContainer = () => {
                 autoPlay
                 loop
                 muted
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover hidden md:block"
             >
                 <source src="/images/mmm.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <video
+                autoPlay
+                loop
+                muted
+                className="absolute inset-0 w-full h-full justify-center object-cover md:hidden"
+            >
+                <source src="/images/background.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center px-8 md:px-24 lg:px-36">
