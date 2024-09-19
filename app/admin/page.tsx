@@ -70,7 +70,7 @@ const Page = () => {
 
   return (
     <section className="flex flex-col min-h-screen p-6 bg-gray-900 text-white">
-      <div className='min-h-[10vh]'></div>
+      <div className='bg-black min-h-[10vh]'></div>
       <header className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
         <div className='flex justify-end'>

@@ -7,7 +7,7 @@ import HomeStudio from "@/components/HomeStudio";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen">
+    <main className="relative min-h-screen bg-black">
       <VideoContainer />
       <IntroductionComponent/>
       <EditorProfileComponent/>

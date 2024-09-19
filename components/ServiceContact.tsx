@@ -3,7 +3,7 @@ import React from 'react';
 
 const ServiceContact = () => {
     return (
-        <div className="text-black px-8 py-16 md:px-0 md:py-16">
+        <div className="text-white px-8 py-16 md:px-0 md:py-16 bg-black">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 bg-white p-4">
                 <div className="flex flex-col my-6 md:my-10">
                     <h3 className="text-3xl md:text-4xl font-bold mb-4 px-4 md:px-8">Have different requirements for your project?</h3>

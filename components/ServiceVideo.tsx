@@ -3,7 +3,7 @@ import React from 'react'
 const ServiceVideo = () => {
   return (
     <div>
-        <div className="flex h-full w-full md:justify-end">
+        <div className="flex h-full w-full md:justify-end text-white bg-black">
             <video
                 autoPlay
                 loop

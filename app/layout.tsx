@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='font-Lora'>
+      <body className='font-Lora bg-black'>
         <SessionProvider>
           <Navbar />
           {children}

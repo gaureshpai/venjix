@@ -119,7 +119,7 @@ const WorkItemCRUD: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
+    <div className="bg-black max-w-7xl mx-auto px-4 py-16 text-white font-Lora min-h-[80vh]">
       <div className="min-h-[10vh]"></div>
       <div className="w-full flex justify-end top-[10vh] relative">
         <Link
