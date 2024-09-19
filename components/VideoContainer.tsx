@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const VideoContainer = () => {
     return (
-        <div className="relative h-screen w-full">
+        <div className="relative h-screen w-full bg-black text-white">
             <video
                 autoPlay
                 loop

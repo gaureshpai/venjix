@@ -44,7 +44,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora">
+    <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora bg-black">
       <h1 className="text-6xl mb-12 font-bold p-8">Let’s work together</h1>
 
       <div className='grid md:grid-cols-2 gap-12 items-start'>
