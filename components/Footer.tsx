@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
@@ -13,30 +14,30 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex space-x-6">
-            <a
-              href="https://twitter.com"
+            <Link
+              href="https://twitter.com/venjix07"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition duration-300"
             >
               <FaTwitter size={20} />
-            </a>
-            <a
-              href="https://instagram.com"
+            </Link>
+            <Link
+              href="https://www.instagram.com/venjix07/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition duration-300"
             >
               <FaInstagram size={20} />
-            </a>
-            <a
-              href="https://youtube.com"
+            </Link>
+            <Link
+              href="https://www.youtube.com/@venjix1.0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition duration-300"
             >
               <FaYoutube size={20} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
