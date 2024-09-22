@@ -1,6 +1,5 @@
 import ServiceContact from '@/components/ServiceContact'
 import ServiceInfo from '@/components/ServiceInfo'
-import ServiceVideo from '@/components/ServiceVideo'
 import WhyBookService from '@/components/WhyBookService'
 import React from 'react'
 
@@ -10,7 +9,6 @@ const page = () => {
       <div className='bg-black min-h-[10vh]'></div>
       <ServiceInfo/>
       <ServiceContact/>
-      <ServiceVideo/>
       <WhyBookService/>
     </div>
   )

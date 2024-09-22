@@ -11,7 +11,9 @@ const IntroductionComponent = () => {
             </div>
             <div className='p-8'>
                 <p className="text-lg mb-8 text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu.
+                   As a highly skilled video editor with a passion for storytelling, I specialize in transforming raw footage into captivating visual narratives. 
+                   With a keen eye for detail and a deep understanding of video editing software, I seamlessly blend sound, visuals, and effects to create engaging content. 
+                   Whether it’s crafting cinematic sequences, promotional videos, or social media content, my focus is on delivering high-quality, polished videos that resonate with audiences.
                 </p>
                 <Link href="/AboutMe">
                     <button className="bg-[#97C584] text-black py-2 font-extrabold px-6 text-lg hover:bg-transparent hover:text-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out shadow-md hover:shadow-lg">

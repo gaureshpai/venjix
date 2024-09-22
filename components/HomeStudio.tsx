@@ -1,13 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
+import std from '@/JSON/HomeStudios.json';
 
 const HomeStudio = () => {
-    const studios = [
-        { id: 1, name: 'Bhoomi_PhotoWOrld', image: '/images/Studios/1.png' },
-        { id: 2, name: 'Diamond Photography 1', image: '/images/Studios/2.png' },
-        { id: 3, name: 'NB STUDIOS simple', image: '/images/Studios/3.png' },
-        { id: 4, name: 'renuka didgital studio logo', image: '/images/Studios/4.png' },
-    ];
+    const studios = std.studios;
 
     return (
         <div className="bg-black text-white py-8 px-8 md:px-16 lg:px-24">
@@ -18,7 +14,7 @@ const HomeStudio = () => {
 
                 <div className="flex flex-wrap justify-center gap-8">
                     {studios.map(studio => (
-                        <div key={studio.id} className="relative w-36 h-36 md:w-48 md:h-48 lg:w-60 lg:h-60">
+                        <div key={studio.id} className="relative w-36 h-36 md:w-36 md:h-36 lg:w-48 lg:h-48">
                             <Image
                                 src={studio.image}
                                 alt={studio.name}

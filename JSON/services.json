@@ -1,0 +1,20 @@
+{
+    "_comment":"This JSON File is for the home page i can help you with contents",
+    "services": [
+        {
+            "title": "Editing",
+            "description": "My editing skills are outstanding, displaying precision and creativity that truly elevate the final product. The attention to detail ensures clarity while enhancing the overall flow and impact of the content.",
+            "image": "/images/editing.jpg"
+        },
+        {
+            "title": "Color Correction",
+            "description": "My color correction work brings images to life, enhancing their emotional impact and visual storytelling. Each hue and tone is expertly balanced, creating a stunning, cohesive look that captivates the viewer",
+            "image": "/images/color.jpg"
+        },
+        {
+            "title": "Sound Design",
+            "description": "My sound design elevates every moment, weaving atmosphere and emotion into the narrative with seamless precision. The clarity and depth of each sound element create an immersive experience that resonates long after it's heard.",
+            "image": "/images/sound.jpg"
+        }
+    ]
+}
