@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import SessionProvider from "@/app/SessionProvider";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Venjix",
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className='font-Lora bg-black'>
         <SessionProvider>
           <Navbar />
+          <Analytics />
           {children}
           <ContactForm />
           <Footer />
