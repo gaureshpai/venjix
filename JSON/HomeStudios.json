@@ -1,0 +1,30 @@
+{
+    "_comments": "This JSON file is for the homepage images of the studios with their alt names and ids",
+    "studios": [
+        {
+            "id": 1,
+            "name": "Bhoomi_PhotoWOrld",
+            "image": "/images/Studios/1.png"
+        },
+        {
+            "id": 2,
+            "name": "Diamond Photography 1",
+            "image": "/images/Studios/2.png"
+        },
+        {
+            "id": 3,
+            "name": "NB STUDIOS simple",
+            "image": "/images/Studios/3.png"
+        },
+        {
+            "id": 4,
+            "name": "Story by Dhanu",
+            "image": "/images/Studios/4.png"
+        },
+        {
+            "id": 5,
+            "name": "renuka didgital studio logo",
+            "image": "/images/Studios/5.png"
+        }
+    ]
+}

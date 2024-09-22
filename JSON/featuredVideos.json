@@ -1,19 +1,20 @@
 {
-    "results":[
-    {
-        "title": "DREAM TEAM",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-        "ytUrl": "https://www.youtube.com/embed/vLgAqeAZiSI"
-    },
-    {
-        "title": "THE CITY",
-        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.",
-        "ytUrl": "https://www.youtube.com/embed/vLgAqeAZiSI"
-    },
-    {
-        "title": "NEIGHBORHOOD",
-        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
-        "ytUrl": "https://www.youtube.com/embed/vLgAqeAZiSI"
-    }
+    "_comment": "This JSON file is for the work page featured videos data",
+    "results": [
+        {
+            "title": "MY BEST YOUTUBE WORK",
+            "description": "This video showcases the diverse range of YouTube content I've worked on, combining creativity with technical expertise to deliver engaging and polished results.",
+            "ytUrl": "https://www.youtube.com/embed/BmJm_4VFer4"
+        },
+        {
+            "title": "MY BEST TEASER WORK",
+            "description": "A collection of my top-notch teaser projects, designed to hook viewers with powerful, emotion-driven visuals and a compelling narrative. Each teaser is carefully crafted to build excitement, leaving the audience eager for more.",
+            "ytUrl": "https://www.youtube.com/embed/h_IFqhD-6zU"
+        },
+        {
+            "title": "MY BEST HIGHLIGHTS",
+            "description": "These highlight represent my ability to extract the most impactful moments from footage, stitching them together into a cohesive, engaging narrative. From sports to events, I specialize in creating high-energy highlights that tell a story and captivate viewers.",
+            "ytUrl": "https://www.youtube.com/embed/7MU4u0fh1yU"
+        }
     ]
 }

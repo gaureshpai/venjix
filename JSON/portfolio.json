@@ -1,5 +1,8 @@
 {
-    "_comment":"This JSON file is for the portfolio items in the work page",
+    "status": 200,
+    "_comment": "This JSON file is for the portfolio items in the work page",
+    "_types": "Highlights, Teasers, Full Videos, Reels, None",
+    "_subtype": "None, Wedding, Pre Wedding, Engagement, Reception, Baby Shower, Maternity Shoot, Baby Naming, Bridal, Corporate Videos, Tutorials, Event Highlights, Music Videos, Documentaries, Commercials",
     "result": [
         {
             "id": 1,
