@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import fetchWorkItems, { WorkItem } from '@/utils/RecentWork';
+import works from '@/JSON/works.json'
 
 const RecentWorkComponent: React.FC = async () => {
-    const workItems = await fetchWorkItems();
+    const workItems = works.result;
 
     if (!workItems || workItems.length === 0) {
         return (
@@ -23,7 +23,7 @@ const RecentWorkComponent: React.FC = async () => {
                     <h2 className="text-5xl md:text-6xl font-bold mb-6">Recent Work</h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-                    {workItems.map((item: WorkItem) => {
+                    {workItems.map((item) => {
                         const videoId = item.yturl.split('?')[0].split('/').pop();
                         const videoSrc = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
                         return (
