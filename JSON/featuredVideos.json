@@ -1,0 +1,19 @@
+{
+    "results":[
+    {
+        "title": "DREAM TEAM",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
+        "ytUrl": "https://www.youtube.com/embed/vLgAqeAZiSI"
+    },
+    {
+        "title": "THE CITY",
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.",
+        "ytUrl": "https://www.youtube.com/embed/vLgAqeAZiSI"
+    },
+    {
+        "title": "NEIGHBORHOOD",
+        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+        "ytUrl": "https://www.youtube.com/embed/vLgAqeAZiSI"
+    }
+    ]
+}

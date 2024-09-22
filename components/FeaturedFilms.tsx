@@ -1,22 +1,7 @@
 import React from 'react';
+import featuredvids from '@/JSON/featuredVideos.json';
 
-const films = [
-    {
-        title: "DREAM TEAM",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-        ytUrl: "https://www.youtube.com/embed/vLgAqeAZiSI"
-    },
-    {
-        title: "THE CITY",
-        description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.",
-        ytUrl: "https://www.youtube.com/embed/vLgAqeAZiSI"
-    },
-    {
-        title: "NEIGHBORHOOD",
-        description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
-        ytUrl: "https://www.youtube.com/embed/vLgAqeAZiSI"
-    }
-];
+const films = featuredvids.results;
 
 const FeaturedFilms = () => {
     return (
@@ -28,16 +13,16 @@ const FeaturedFilms = () => {
                     {films.map((film, index) => (
                         <div
                             key={index}
-                            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}
+                            className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}
                         >
                             <div className="flex flex-col justify-center md:w-1/2">
-                                <h3 className="text-2xl font-semibold mb-4">{film.title}</h3>
+                                <h3 className="text-2xl font-semibold mb-4 text-center md:text-left">{film.title}</h3>
                                 <p className="text-gray-300 text-lg">
                                     {film.description}
                                 </p>
                             </div>
 
-                            <div className="flex justify-center items-center md:w-1/2">
+                            <div className="flex justify-center items-center w-full md:w-1/2">
                                 <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl">
                                     <iframe
                                         width="100%"

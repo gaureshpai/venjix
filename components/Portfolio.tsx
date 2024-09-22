@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import portfolio from '@/JSON/portfolio.json';
 
 interface PortfolioItem {
     id: number;
@@ -12,7 +13,7 @@ interface PortfolioItem {
 }
 
 const PortfolioItemComponent: React.FC<{ item: PortfolioItem }> = ({ item }) => {
-    const videoId = item.yturl
+    const videoId = item.yturl;
     const videoSrc = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
 
     return (
@@ -39,24 +40,11 @@ const Portfolio: React.FC = () => {
     const [filter, setFilter] = useState<string>('All');
 
     useEffect(() => {
-        const fetchPortfolioItems = async () => {
-            try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/portfolio/findall`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                if (data.status === 200) {
-                    setPortfolioItems(data.result);
-                } else {
-                    throw new Error(`API returned status ${data.status}`);
-                }
-            } catch (error: any) {
-                console.error('Failed to fetch portfolio items:', error);
-            }
-        };
-
-        fetchPortfolioItems();
+        try {
+            setPortfolioItems(portfolio.result);
+        } catch (error) {
+            console.error("Error loading portfolio data:", error);
+        }
     }, []);
 
     const filters = ['All', 'Teasers', 'Full Videos', 'Highlights', 'Reels'];

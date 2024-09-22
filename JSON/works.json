@@ -1,0 +1,35 @@
+{
+    "_comment": "This JSON file is for the featured works for the home page",
+    "result": [
+        {
+            "id": 1,
+            "title": "Best Wedding Teaser",
+            "yturl": "yQbpd8d4384?si=Eey3HFd6GYLf_RK3"
+        },
+        {
+            "id": 2,
+            "title": "Beautiful Wedding Highlights Full",
+            "yturl": "vbDlFHPkY4w?si=tYVqWWa9VVuSvjZ3"
+        },
+        {
+            "id": 3,
+            "title": "Reception Highlights",
+            "yturl": "QtdTVrwLAyU?si=EGCu219hogM1-DDG"
+        },
+        {
+            "id": 4,
+            "title": "Pre Wedding Teaser 1",
+            "yturl": "rDrgPRp0a4g?si=xtNXB3zaEAfGufZh"
+        },
+        {
+            "id": 5,
+            "title": "Beautiful Pre Wedding",
+            "yturl": "xaHTkxjVGOI?si=QVvCf6cdrvC24d2j"
+        },
+        {
+            "id": 6,
+            "title": "Wedding Reel",
+            "yturl": "nzMXczjVTLQ?si=l0juHx741bKeO_0p"
+        }
+    ]
+}
