@@ -21,10 +21,10 @@ export default function RootLayout({
       <body className='font-Lora bg-black'>
         <SessionProvider>
           <Navbar />
-          <Analytics />
           {children}
           <ContactForm />
           <Footer />
+          <Analytics />
         </SessionProvider>
       </body>
     </html>
