@@ -10,7 +10,7 @@ const VideoContainer = () => {
                 muted
                 className="absolute inset-0 w-full h-full object-cover hidden md:block"
             >
-                <source src="/images/ba.mp4" type="video/mp4" />
+                <source src="/videos/desktopbg.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <video
@@ -19,7 +19,7 @@ const VideoContainer = () => {
                 muted
                 className="absolute inset-0 w-full h-full justify-center object-cover md:hidden"
             >
-                <source src="/images/back.mp4" type="video/mp4" />
+                <source src="/videos/mobile.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center px-8 md:px-24 lg:px-36">

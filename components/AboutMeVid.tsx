@@ -8,7 +8,7 @@ const AboutMeVid = () => {
                 Client's Happy Reaction on my work
             </p>
             <video
-                src="images/ClientResponse.mp4"
+                src="videos/ClientResponse.mp4"
                 controls
                 className="w-full max-w-4xl max-h-[70vh] shadow-lg rounded-lg border border-gray-800"
             >
