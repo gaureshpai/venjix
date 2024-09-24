@@ -16,7 +16,6 @@ const Page = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [contacts, setContacts] = useState<Contact[]>([]);
-  const [loadingContacts, setLoadingContacts] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deletedContact, setDeletedContact] = useState<Contact | null>(null);
 
@@ -28,7 +27,6 @@ const Page = () => {
 
   useEffect(() => {
     const fetchContacts = async () => {
-      setLoadingContacts(true);
       setError(null);
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/mail/findall`);
@@ -37,8 +35,6 @@ const Page = () => {
         setContacts(data.result);
       } catch (err: any) {
         setError(err.message || 'An error occurred');
-      } finally {
-        setLoadingContacts(false);
       }
     };
 
@@ -101,7 +97,7 @@ const Page = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-center">No contacts available</p>
+                <p className="text-center">Loading contact form data...</p>
               )}
               {deletedContact && (
                 <p className="mt-6 text-green-500">

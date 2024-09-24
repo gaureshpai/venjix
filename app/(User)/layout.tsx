@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "@/public/styles/globals.css";
-import SessionProvider from "@/app/SessionProvider";
-import { Analytics } from "@vercel/analytics/react"
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Venjix",
@@ -16,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='font-Lora bg-black'>
-        <SessionProvider>
+          <Navbar />
           {children}
-          <Analytics />
-        </SessionProvider>
+          <ContactForm />
+          <Footer />
       </body>
     </html>
   );
