@@ -79,7 +79,7 @@ const ContactForm = () => {
           </div>
 
           <div className="p-8 rounded-lg">
-            <form action="https://formsubmit.co/paigauresh@gmail.com" method="POST" className="space-y-6" onSubmit={handleSubmit}>
+            <form action="https://formsubmit.co/venjix07@gmail.com" method="POST" className="space-y-6">
               <div>
                 <input
                   type="text"
