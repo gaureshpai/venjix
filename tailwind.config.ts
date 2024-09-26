@@ -26,7 +26,7 @@ const config: Config = {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
         Lora: ['Lora', 'serif'],
-        Mont: ['Montserrat', 'sans - serif'],
+        Mont: ['Montserrat', 'sans-serif'],
       }
     }
   },
