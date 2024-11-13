@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="py-8 flex flex-col sm:flex-row justify-between items-center">
           <div className="mb-4 sm:mb-0">
             <p className="text-sm text-gray-400">
-              Copyright &copy; {new Date().getFullYear()} Venjix | Powered by hseruag
+              Copyright &copy; {new Date().getFullYear()} Venjix | Powered by <a href='https://kreekarvat.in' className='no-underline text-gray-400'>Kreekarvat Technologies</a>
             </p>
           </div>
           <div className="flex space-x-6">
