@@ -33,7 +33,7 @@ const PortfolioItemComponent: React.FC<{ item: PortfolioItem }> = ({ item }) => 
                     className="w-full h-60 md:h-72 lg:h-80 object-cover"
                 ></iframe>
             )}
-            <div className="">
+            <div>
                 <h3 className="text-xl font-semibold text-center">
                     {item.year} - {item.subtype !== 'None' ? item.subtype : ''} {item.type !== 'None' ? item.type : ''}
                 </h3>
