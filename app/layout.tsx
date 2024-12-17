@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/public/styles/globals.css";
 import SessionProvider from "@/app/SessionProvider";
-import { Analytics } from "@vercel/analytics/react"
+// import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Venjix",
@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className='font-Lora bg-black'>
         <SessionProvider>
           {children}
-          <Analytics />
+          {/* <Analytics /> */}
         </SessionProvider>
       </body>
     </html>
