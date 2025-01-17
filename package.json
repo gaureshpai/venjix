@@ -13,7 +13,7 @@
     "@vercel/analytics": "^1.4.1",
     "emailjs": "^4.0.3",
     "mongodb": "^6.12.0",
-    "mongoose": "^8.9.2",
+    "mongoose": "^8.9.5",
     "next": "^15.1.2",
     "next-auth": "^4.24.11",
     "react": "^19",
