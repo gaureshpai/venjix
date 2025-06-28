@@ -6,7 +6,7 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Venjix",
-  description: "Designed and Developed by Gauresh",
+  description: "A modern portfolio website showcasing Venjix’s professional video editing and filmmaking services with project galleries and a contact form.",
 };
 
 export default function RootLayout({
