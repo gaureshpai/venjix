@@ -7,12 +7,12 @@ import HomeStudio from "@/components/HomeStudio";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-black">
+    <main className="relative min-h-screen bg-black mx-auto">
       <VideoContainer />
-      <IntroductionComponent/>
-      <EditorProfileComponent/>
-      <ServicesComponent/>
-      <RecentWorkComponent/>
+      <IntroductionComponent />
+      <EditorProfileComponent />
+      <ServicesComponent />
+      <RecentWorkComponent />
       <HomeStudio />
     </main>
   );

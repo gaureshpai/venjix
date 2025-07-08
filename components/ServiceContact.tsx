@@ -11,8 +11,8 @@ const ServiceContact = () => {
                 <div className="flex flex-col my-6 md:my-10">
                     <h3 className="text-xl md:text-2xl font-bold mb-4 px-4 md:px-8">Need Assistance?</h3>
                     <p className="text-black text-base md:text-sm px-4 md:px-0 text-center">
-                        If you have any specific requirements, please feel free to share them with me at any time. 
-                        I'm always open to tailoring my work to meet your unique needs and ensure the best possible outcome for your project.
+                        {"If you have any specific requirements, please feel free to share them with me at any time. \
+                        I'm always open to tailoring my work to meet your unique needs and ensure the best possible outcome for your project."}
                     </p>
                 </div>
                 <div className="flex flex-col justify-center items-center my-6 md:my-10">

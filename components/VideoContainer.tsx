@@ -22,7 +22,7 @@ const VideoContainer = () => {
                 <source src="/videos/mobile.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center px-8 md:px-24 lg:px-36">
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col max-w-7xl mx-auto justify-center">
                 <div className="max-w-3xl">
                     <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 font-mono leading-tight">
                         Turning Videos into

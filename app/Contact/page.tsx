@@ -1,11 +1,8 @@
-import Login from '@/components/Login'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-        <Login/>
-    </div>
+    <div className='bg-black min-h-[10vh]'></div>
   )
 }
 

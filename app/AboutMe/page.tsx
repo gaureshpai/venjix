@@ -6,12 +6,12 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='min-h-[80vh] bg-black'>
+    <div className='min-h-[80vh] bg-black max-w-7xl mx-auto'>
       <div className='bg-black min-h-[10vh]'></div>
-      <Intro/>
-      <BusinessInNumbers/>
-      <Experience/>
-      <AboutMeVid/>
+      <Intro />
+      <BusinessInNumbers />
+      <Experience />
+      <AboutMeVid />
     </div>
   )
 }
