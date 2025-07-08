@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const IntroductionComponent = () => {
     return (
-        <div className="bg-black text-white py-16 px-8 md:px-16 lg:px-24 grid md:grid-cols-2">
+        <div className="bg-black text-white py-16 max-w-7xl mx-auto grid md:grid-cols-2">
             <div className="mx-auto p-8">
                 <h2 className="text-5xl md:text-6xl font-bold mb-6">
                     {"I'm Vivek, a professional video editor & film maker"}

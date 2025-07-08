@@ -51,7 +51,7 @@ const ContactForm = () => {
           </div>
 
           <div className="p-8 rounded-lg">
-            <form action="https://formsubmit.co/venjix07@gmail.com" method="POST" className="space-y-6">
+            <form action="https://formcarry.com/s/I_COSszkH-C" method="POST" className="space-y-6">
               <div>
                 <input
                   type="text"
