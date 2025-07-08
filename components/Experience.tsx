@@ -16,13 +16,13 @@ const Experience = () => {
                             width={600}
                             height={200}
                             style={{ objectFit: 'cover' }}
-                            className="shadow-2xl w-auto h-auto" 
+                            className="shadow-2xl w-auto h-auto"
                         />
                     </div>
                     <p className="text-gray-300 text-sm md:text-base leading-relaxed text-center">
-                        With five years of hands-on experience in video editing, I have developed a strong expertise in transforming raw footage into captivating stories. 
-                        My journey has allowed me to work across various genres, including commercials, documentaries, and social media content, honing my skills in cutting, color correction, sound design, and visual effects. 
-                        I thrive on creative challenges and am committed to delivering high-quality results that align with client visions. 
+                        With five years of hands-on experience in video editing, I have developed a strong expertise in transforming raw footage into captivating stories.
+                        My journey has allowed me to work across various genres, including commercials, documentaries, and social media content, honing my skills in cutting, color correction, sound design, and visual effects.
+                        I thrive on creative challenges and am committed to delivering high-quality results that align with client visions.
                         My experience has taught me the importance of effective collaboration and clear communication, ensuring a smooth editing process and a final product that resonates with audiences.
                     </p>
                 </div>

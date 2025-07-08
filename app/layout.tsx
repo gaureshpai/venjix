@@ -6,7 +6,8 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Venjix",
-  description: "A modern portfolio website showcasing Venjix’s professional video editing and filmmaking services with project galleries and a contact form.",
+  description:
+    "Discover Venjix, a passionate video editor and filmmaker dedicated to transforming ideas into cinematic experiences. Explore a curated portfolio of creative projects, professional editing services, and bespoke filmmaking solutions for brands, creators, and storytellers. Connect with Venjix to elevate your visual content with expertise, artistry, and a personal touch.",
 };
 
 export default function RootLayout({
@@ -17,10 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='font-Lora bg-black'>
-          <Navbar />
-          {children}
-          <ContactForm />
-          <Footer />
+        <Navbar />
+        {children}
+        <ContactForm />
+        <Footer />
       </body>
     </html>
   );
