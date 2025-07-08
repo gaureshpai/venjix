@@ -21,7 +21,7 @@ const BusinessInNumbers = () => {
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
                         <h3 className="text-4xl font-bold mb-2 text-[#97C584]">500+</h3>
-                        <p className="text-gray-300">Successfully edited over 500 videos, bringing clients' visions to life through detailed post-production and storytelling.</p>
+                        <p className="text-gray-300">{"Successfully edited over 500 videos, bringing client's visions to life through detailed post-production and storytelling."}</p>
                     </div>
                     <div className="p-6 rounded-lg shadow-lg">
                         <h3 className="text-4xl font-bold mb-2 text-[#97C584]">90%</h3>

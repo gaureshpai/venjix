@@ -5,7 +5,7 @@ const AboutMeVid = () => {
     return (
         <div className="relative flex justify-center items-center bg-black py-12 px-4 md:py-16 md:px-8 lg:px-12">
             <p className="absolute text-2xl top-4 left-50 text-white bg-opacity-75 px-4 py-2 rounded-lg shadow-lg">
-                Client's Happy Reaction on my work
+                {"Client's Happy Reaction on my work"}
             </p>
             <video
                 src="videos/ClientResponse.mp4"

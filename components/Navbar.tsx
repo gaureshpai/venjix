@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import '@/public/styles/globals.css';
 import LogoContainer from './LogoContainer';
 
 const Navbar = () => {

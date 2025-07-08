@@ -16,34 +16,6 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setResponseMessage('');
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/mail/create`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      
-      const data = await response.json();
-
-      if (response.status === 200 && data.result) {
-        setFormData({ fullName: '', email: '', message: '' });
-        setResponseMessage('Message sent successfully!');
-      } else {
-        throw new Error(data.message || 'Failed to send message');
-      }
-    } catch (error) {
-      setResponseMessage('Failed to send message. Please try again.');
-      console.error('Failed to send message:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className='bg-black w-100'>
       <div className="max-w-7xl mx-auto px-4 py-16 text-white font-Lora">
@@ -52,8 +24,8 @@ const ContactForm = () => {
         <div className='grid md:grid-cols-2 gap-12 items-start'>
           <div className="p-8 rounded-lg">
             <p className="text-lg mb-8">
-              We're excited to hear from you and discuss how we can collaborate on your next project.
-              Feel free to reach out using the contact information below or fill out the form.
+              {"We're excited to hear from you and discuss how we can collaborate on your next project.\
+              Feel free to reach out using the contact information below or fill out the form."}
             </p>
             <div className="space-y-4">
               <div className="flex items-center">
@@ -124,6 +96,10 @@ const ContactForm = () => {
               </div>
               <button
                 type="submit"
+                onClick={() => {
+                  setIsSubmitting(true);
+                  setResponseMessage('');
+                }}
                 className="bg-[#97C584] text-black py-2 px-4 hover:bg-transparent hover:text-[#97C584] border-[#97C584] border-2 transition duration-300 ease-in-out font-extrabold"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}

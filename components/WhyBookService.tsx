@@ -27,9 +27,9 @@ const WhyBookService = () => {
                 <div>
                     <h1 className="text-5xl md:text-6xl font-bold mb-4">Why book my service?</h1>
                     <p className="text-lg mb-6">
-                        With years of experience in the field, I offer high-quality video editing services designed
-                        to bring your project to life. Whether you're working on a personal project or a professional production,
-                        I will ensure the final product exceeds your expectations.
+                        {"With years of experience in the field, I offer high-quality video editing services designed\
+                        to bring your project to life. Whether you're working on a personal project or a professional production,\
+                        I will ensure the final product exceeds your expectations."}
                     </p>
                     <div className="pl-6 space-y-4">
                         {points.map((point, index) => (
